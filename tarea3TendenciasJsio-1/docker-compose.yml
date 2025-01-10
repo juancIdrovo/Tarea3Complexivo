@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb_container
+    ports:
+      - "2023:27017" # Puerto 2023 redirigido al puerto 27017 de MongoDB
+    volumes:
+      - mongo_data:/data/db # Persistencia de datos
+
+volumes:
+  mongo_data:
