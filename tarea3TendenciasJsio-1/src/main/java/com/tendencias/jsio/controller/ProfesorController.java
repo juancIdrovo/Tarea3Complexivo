@@ -87,18 +87,6 @@ public class ProfesorController {
         return new ResponseEntity<>("Se encontraron " + profesores.size() + " profesores para el departamento con ID: " + deptoId, HttpStatus.OK);
     }
 
-    @GetMapping("/count/profesores")
-    public ResponseEntity<?> getDepartamentosWithMinProfesores(@RequestParam int minProfesores) {
-        Map<String, Long> countByDepto = profesorService.countProfesoresByDepto();
-        Map<String, Long> filteredDeptos = countByDepto.entrySet().stream()
-            .filter(entry -> entry.getValue() >= minProfesores)
-            .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-
-        if (filteredDeptos.isEmpty()) {
-            return new ResponseEntity<>("No se encontraron departamentos con más de " + minProfesores + " profesores.", HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>("Conteo de departamentos con más de " + minProfesores + " profesores: " + filteredDeptos, HttpStatus.OK);
-    }
 }
 
 
